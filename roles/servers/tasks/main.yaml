@@ -1,12 +1,7 @@
 ---
 
-- hosts: agents
-  gather_facts: No
-  remote_user: root
-
-  tasks:
-    - name: Install k3s agent
-      shell: >
-        curl -sfL https://get.k3s.io | sh -s - agent \
-        --server https://{{ lb_ip_address }}:6443 \
-        --token {{ k3s_token }}
+- name: Install k3s agent
+  shell: >
+    curl -sfL https://get.k3s.io | sh -s - agent \
+    --server https://{{ lb_ip_address }}:6443 \
+    --token {{ k3s_token }}
