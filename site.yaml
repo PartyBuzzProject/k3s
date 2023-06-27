@@ -1,0 +1,11 @@
+---
+
+- hosts: servers
+  roles:
+    - role: servers
+      become: true
+
+- hosts: agents
+  roles:
+    - role: agents
+      become: true
