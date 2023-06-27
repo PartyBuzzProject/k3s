@@ -1,6 +1,5 @@
 ---
 
----
 - hosts: agents
   gather_facts: No
   remote_user: root
