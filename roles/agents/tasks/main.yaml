@@ -1,22 +1,7 @@
 ---
 
-- name: Install k3s on first server
+- name: Install k3s agents
   shell: >
-    curl -sfL https://get.k3s.io | sh -s - server \
-    --token={{ k3s_token }} \
-    --tls-san {{ dns_name }} --tls-san {{ lb_ip_address }} \
-    --cluster-init
-  when: inventory_hostname == groups['server'][0]
-
-- name: Get IP of the first server
-  set_fact:
-    first_server_ip: "{{ hostvars[groups['server'][0]]['ansible_default_ipv4']['address'] }}"
-  run_once: true
-
-- name: Install k3s on the remaining servers
-  shell: >
-    curl -sfL https://get.k3s.io | sh -s - server \
-    --token={{ k3s_token }} \
-    --tls-san {{ dns_name }} --tls-san {{ lb_ip_address }} \
-    --server https://{{ first_server_ip }}:6443
-  when: inventory_hostname != groups['server'][0]
+    curl -sfL https://get.k3s.io | sh -s - agent \
+    --server https://{{ lb_ip_address }}:6443 \
+    --token {{ k3s_token }}
