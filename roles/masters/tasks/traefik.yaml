@@ -17,3 +17,8 @@
   command:
     cmd: helm install --namespace=traefik traefik traefik/traefik --values=values.yaml
     warn: no
+    register: helm_output
+
+- name: Debug Helm install output
+  debug:
+    msg: "{{ helm_output.stdout }}"
