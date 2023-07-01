@@ -6,17 +6,14 @@
 - name: Add Traefik Helm repository
   command:
     cmd: helm repo add traefik https://traefik.github.io/charts
-    warn: no
 
 - name: Update Helm repos
   command:
     cmd: helm repo update
-    warn: no
 
 - name: Install Traefik Helm chart
   command:
     cmd: helm install --namespace=traefik traefik traefik/traefik --values=values.yaml
-    warn: no
     register: helm_output
 
 - name: Debug Helm install output
