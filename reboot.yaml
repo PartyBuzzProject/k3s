@@ -3,6 +3,9 @@
   hosts: cluster
   gather_facts: yes
   tasks:
+    - name: Update cache
+      apt:
+        update_cache: yes
     - name: Reboot the nodes (and Wait upto 5 mins max)
       become: true
       reboot:
