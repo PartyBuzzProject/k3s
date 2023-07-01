@@ -1,0 +1,21 @@
+- name: Download Helm binary
+  get_url:
+    url: "https://get.helm.sh/helm-v3.7.0-linux-amd64.tar.gz"
+    dest: "/tmp/helm.tar.gz"
+
+- name: Extract Helm binary
+  unarchive:
+    src: "/tmp/helm.tar.gz"
+    dest: "/tmp"
+    remote_src: yes
+
+- name: Move Helm binary
+  command: "sudo mv /tmp/linux-amd64/helm /usr/local/bin/helm"
+
+- name: Verify Helm installation
+  command: "helm version"
+  register: helm_version
+
+- name: Display Helm version
+  debug:
+    var: helm_version.stdout
