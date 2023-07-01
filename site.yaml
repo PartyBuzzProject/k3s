@@ -1,11 +1,11 @@
 ---
 
-- hosts: servers
+- hosts: masters
   roles:
-    - role: servers
+    - role: masters
       become: true
 
-- hosts: agents
+- hosts: workers
   roles:
-    - role: agents
+    - role: workers
       become: true
