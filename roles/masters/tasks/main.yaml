@@ -8,6 +8,10 @@
     --cluster-init
   when: inventory_hostname == groups['masters'][0]
 
+- name: Install helm on first server
+  include_tasks: helm.yaml
+  when: inventory_hostname == groups['masters'][0]
+
 - name: Get IP of the first server
   set_fact:
     first_server_ip: "{{ hostvars[groups['masters'][0]]['ansible_default_ipv4']['address'] }}"
