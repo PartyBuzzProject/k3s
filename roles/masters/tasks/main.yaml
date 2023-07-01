@@ -10,7 +10,6 @@
 
 - name: Install helm on first server
   include_tasks: helm.yaml
-  become: yes
   when: inventory_hostname == groups['masters'][0]
 
 - name: Get IP of the first server
