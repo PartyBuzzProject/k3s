@@ -8,8 +8,12 @@
     --cluster-init
   when: inventory_hostname == groups['masters'][0]
 
-- name: Install helm on first server
+- name: Install helm
   include_tasks: helm.yaml
+  when: inventory_hostname == groups['masters'][0]
+
+- name: Install traefik
+  include_tasks: traefik.yaml
   when: inventory_hostname == groups['masters'][0]
 
 - name: Get IP of the first server
