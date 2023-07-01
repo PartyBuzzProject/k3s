@@ -2,4 +2,7 @@
 
 k3s_token: "qdDZGYuVjXFnGwxODTyd"
 dns_name: "partybuzz.ch"
-lb_ip_address: "128.140.24.208"
+lb_ip_address: "167.235.217.95"
+helm_version: "v3.12.1"
+helm_architecture: "linux-arm64"
+helm_download_url: "https://get.helm.sh/helm-{{ helm_version }}-{{ helm_architecture }}.tar.gz"
