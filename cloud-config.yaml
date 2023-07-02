@@ -1,8 +1,8 @@
 #cloud-config
 users:
   - name: pb
-    sudo: ['ALL=(ALL) NOPASSWD:ALL']¥
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
     ssh_pwauth: True
     lock_passwd: False
-    passwd: $6$xyz$gdKBYbzggYolytjUecIWA42mK.OUQOkK1iS7gmLZ.XhpFgMwHkBO7jyHOOoWvEehE.txp8F3z6OGLezB43Y1q1
+    passwd: ZvippUlBOu8NYHm9bnu/svUn4NTyQCbQvd4mRDyId8HwDCbgwXSEWE35OQZY66XSNyJjlMtNp0NmXSZeOUPgt0
 chpasswd: { expire: False }
