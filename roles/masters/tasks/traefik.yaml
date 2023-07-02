@@ -1,8 +1,3 @@
-- name: Copy a file to the target host
-  template:
-    src: ../templates/values.yaml.j2
-    dest: ~/values.yaml
-
 - name: Add Traefik Helm repository
   command:
     cmd: helm repo add traefik https://traefik.github.io/charts
@@ -10,6 +5,21 @@
 - name: Update Helm repos
   command:
     cmd: helm repo update
+
+- name: Create a namespace named 'traefik'
+  kubernetes.core.k8s:
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: traefik
+
+- name: Copy a file to the target host
+  template:
+    src: ../templates/values.yaml.j2
+    dest: ~/values.yaml
 
 - name: Install Traefik Helm chart
   command:
