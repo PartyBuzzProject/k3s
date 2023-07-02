@@ -1,5 +1,10 @@
 ---
 
+- name: Ensure dependencies are installed
+  ansible.builtin.pip:
+    name: kubernetes
+    state: present
+
 - name: Install k3s on first server
   shell: >
     curl -sfL https://get.k3s.io | sh -s - server \
