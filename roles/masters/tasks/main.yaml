@@ -13,6 +13,15 @@
     --cluster-init
   when: inventory_hostname == groups['masters'][0]
 
+- name: Ensure .kube directory exists
+  ansible.builtin.file:
+    path: /root/.kube
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  when: inventory_hostname == groups['masters'][0]
+
 - name: Copy k3s kubeconfig to local directory for the first master
   copy:
     src: /etc/rancher/k3s/k3s.yaml
@@ -22,7 +31,6 @@
     group: root
     mode: '0644'
   when: inventory_hostname == groups['masters'][0]
-
 
 - name: Install helm
   include_tasks: helm.yaml
