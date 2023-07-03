@@ -14,13 +14,15 @@
   when: inventory_hostname == groups['masters'][0]
 
 - name: Copy k3s kubeconfig to local directory for the first master
-  ansible.builtin.copy:
+  copy:
     src: /etc/rancher/k3s/k3s.yaml
-    dest: ~/.kube/config
-    owner: "root"
-    group: "sudo"
+    dest: /root/.kube/config
+    remote_src: yes
+    owner: root
+    group: root
     mode: '0644'
   when: inventory_hostname == groups['masters'][0]
+
 
 - name: Install helm
   include_tasks: helm.yaml
