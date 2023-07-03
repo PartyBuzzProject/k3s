@@ -38,3 +38,11 @@
     --tls-san {{ dns_name }} --tls-san {{ lb_ip_address }} \
     --server https://{{ first_server_ip }}:6443
   when: inventory_hostname != groups['masters'][0]
+
+- name: Copy k3s kubeconfig to local directory for all master nodes
+  copy:
+    src: /etc/rancher/k3s/k3s.yaml
+    dest: ~/.kube/config
+    owner: "{{ ansible_user }}"
+    group: "sudo"
+    mode: '0644'
