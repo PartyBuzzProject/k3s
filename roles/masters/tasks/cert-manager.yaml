@@ -19,7 +19,7 @@
 
 - name: Install cert-manager via Helm
   command:
-    cmd: helm install my-cert-manager cert-manager/cert-manager --namespace cert-manager --values=values.yaml --version {{ manager_version }}
+    cmd: helm install my-cert-manager cert-manager/cert-manager --namespace cert-manager --values=values.yaml --version {{ cert-manager_version }}
   register: helm_output
 
 - name: Output Helm command result
