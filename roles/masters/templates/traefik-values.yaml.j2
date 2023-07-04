@@ -1,3 +1,7 @@
+globalArguments:
+  - "--global.sendanonymoususage=false"
+  - "--global.checknewversion=false"
+
 additionalArguments:
   - "--serversTransport.insecureSkipVerify=true"
   - "--log.level=DEBUG"
@@ -17,12 +21,18 @@ ports:
     tls:
       enabled: true
 
-provider:
+ingressRoute:
+  dashboard:
+    enabled: false
+
+providers:
   kubernetesCRD:
     enabled: true
     ingressClass: traefik-external
+    allowExternalNameServices: true
   kubernetesIngress:
     enabled: true
+    allowExternalNameServices: true
     publishedService:
       enabled: false
 
@@ -35,6 +45,6 @@ service:
   annotations: {}
   labels: {}
   spec:
-    loadBalancerIp: {{ lb_ip_address }}
+    loadBalancerIP: {{ lb_ip_address }}
   loadBalancerSourceRanges: []
-  externalIps: []
+  externalIPs: []
