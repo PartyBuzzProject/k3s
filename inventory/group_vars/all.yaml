@@ -1,8 +1,11 @@
 ---
 
-k3s_token: "qdDZGYuVjXFnGwxODTyd"
 dns_name: "partybuzz.ch"
-lb_ip_address: "49.12.21.117"
+k3s_version: "v1.27.3+k3s1"
 helm_version: "v3.12.1"
+traefik_version: "23.1.0"
+cert-manager_version: "1.12.2"
+k3s_token: "qdDZGYuVjXFnGwxODTyd"
+lb_ip_address: "49.12.21.117"
 helm_architecture: "linux-arm64"
 helm_download_url: "https://get.helm.sh/helm-{{ helm_version }}-{{ helm_architecture }}.tar.gz"

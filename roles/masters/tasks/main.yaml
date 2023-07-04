@@ -7,7 +7,7 @@
 
 - name: Install k3s on first server
   shell: >
-    curl -sfL https://get.k3s.io | sh -s - server \
+    curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION={{ k3s_version }} sh -s - server \
     --token={{ k3s_token }} \
     --tls-san {{ dns_name }} --tls-san {{ lb_ip_address }} \
     --cluster-init
@@ -47,7 +47,7 @@
 
 - name: Install k3s on the remaining masters
   shell: >
-    curl -sfL https://get.k3s.io | sh -s - server \
+    curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION={{ k3s_version }} sh -s - server \
     --token={{ k3s_token }} \
     --tls-san {{ dns_name }} --tls-san {{ lb_ip_address }} \
     --server https://{{ first_server_ip }}:6443

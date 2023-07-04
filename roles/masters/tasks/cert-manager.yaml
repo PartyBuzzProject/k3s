@@ -11,3 +11,17 @@
 - name: Apply cert-manager CRDs
   command:
     cmd: kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.2/cert-manager.crds.yaml
+
+- name: Copy values file to remote host
+  copy:
+    src: ../templates/cert-manager-values.yaml
+    dest: ~/values.yaml
+
+- name: Install cert-manager via Helm
+  command:
+    cmd: helm install my-cert-manager cert-manager/cert-manager --namespace cert-manager --values=values.yaml --version {{ manager_version }}
+  register: helm_output
+
+- name: Output Helm command result
+  debug:
+    var: helm_output.stdout_lines
