@@ -7,7 +7,7 @@ spec:
   acme:
     server: https://acme-staging-v02.api.letsencrypt.org/directory
     email: admin@partybuzz.ch
-    privateKeySecretRef:
+    privateTokenSecretRef:
       name: letsencrypt-staging
     solvers:
       - dns01:
