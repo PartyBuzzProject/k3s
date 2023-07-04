@@ -14,8 +14,3 @@
 
 - name: Verify Helm installation
   command: "helm version"
-  register: helm_version_output
-
-- name: Display Helm version
-  debug:
-    var: helm_version_output.stdout

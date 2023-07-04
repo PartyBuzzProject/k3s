@@ -1,3 +1,11 @@
+- name: Add Traefik Helm repository
+  command:
+    cmd: helm repo add cert-manager https://charts.jetstack.io
+
+- name: Update Helm repos
+  command:
+    cmd: helm repo update
+
 - name: Create a namespace named 'cert-manager'
   k8s:
     kubeconfig: /etc/rancher/k3s/k3s.yaml
@@ -10,18 +18,13 @@
 
 - name: Apply cert-manager CRDs
   command:
-    cmd: kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.2/cert-manager.crds.yaml
+    cmd: kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v{{ certmanager_version }}/cert-manager.crds.yaml
 
 - name: Copy values file to remote host
   copy:
     src: ../templates/cert-manager-values.yaml
-    dest: ~/values.yaml
+    dest: ~/cm-values.yaml
 
 - name: Install cert-manager via Helm
   command:
-    cmd: helm install my-cert-manager cert-manager/cert-manager --namespace cert-manager --values=values.yaml --version {{ certmanager_version }}
-  register: helm_output
-
-- name: Output Helm command result
-  debug:
-    var: helm_output.stdout_lines
+    cmd: helm install my-cert-manager cert-manager/cert-manager --namespace cert-manager --values=cm-values.yaml --version {{ certmanager_version }}
