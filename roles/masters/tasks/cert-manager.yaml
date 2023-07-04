@@ -1,0 +1,13 @@
+- name: Create a namespace named 'cert-manager'
+  k8s:
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: cert-manager
+
+- name: Apply cert-manager CRDs
+  command:
+    cmd: kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.2/cert-manager.crds.yaml

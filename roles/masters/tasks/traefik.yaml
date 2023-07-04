@@ -18,7 +18,7 @@
 
 - name: Copy a file to the target host
   template:
-    src: ../templates/values.yaml.j2
+    src: ../templates/traefik-values.yaml.j2
     dest: ~/values.yaml
 
 - name: Install Traefik Helm chart

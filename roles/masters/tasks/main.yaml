@@ -1,7 +1,7 @@
 ---
 
 - name: Ensure dependencies are installed
-  ansible.builtin.pip:
+  pip:
     name: kubernetes
     state: present
 
@@ -14,7 +14,7 @@
   when: inventory_hostname == groups['masters'][0]
 
 - name: Ensure .kube directory exists
-  ansible.builtin.file:
+  file:
     path: /root/.kube
     state: directory
     owner: root
