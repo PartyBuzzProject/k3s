@@ -16,10 +16,9 @@ deployment:
 
 ports:
   web:
-    redirectTo: websecure
-  websecure:
-    tls:
-      enabled: true
+    port: 8000
+    expose: true
+    exposedPort: 80
 
 ingressRoute:
   dashboard:
