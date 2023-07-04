@@ -40,9 +40,9 @@
   include_tasks: traefik.yaml
   when: inventory_hostname == groups['masters'][0]
 
-- name: Install cert-manager
-  include_tasks: cert-manager.yaml
-  when: inventory_hostname == groups['masters'][0]
+#- name: Install cert-manager
+#  include_tasks: cert-manager.yaml
+#  when: inventory_hostname == groups['masters'][0]
 
 - name: Get IP of the first server
   set_fact:

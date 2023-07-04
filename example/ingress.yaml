@@ -7,8 +7,6 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: traefik-external
 spec:
-  entryPoints:
-    - websecure
   routes:
     - match: Host(`www.partybuzz.ch`)
       kind: Rule
@@ -20,7 +18,5 @@ spec:
       services:
         - name: nginx
           port: 80
-      middlewares:
-        - name: default-headers
-  tls:
-    secretName: partybuzz-ch-tls
+#      middlewares:
+#        - name: default-headers
