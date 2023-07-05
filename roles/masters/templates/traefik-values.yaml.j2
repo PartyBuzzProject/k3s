@@ -16,9 +16,15 @@ deployment:
 
 ports:
   web:
+    asDefault: true
     port: 8000
     expose: true
     exposedPort: 80
+    protocol: TCP
+  websecure:
+    port: 8443
+    expose: true
+    exposedPort: 443
     protocol: TCP
 
 ingressRoute:
